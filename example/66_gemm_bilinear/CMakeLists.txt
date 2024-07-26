@@ -1,0 +1,3 @@
+add_example_executable(example_gemm_add_xdl_fp16 gemm_add_xdl_fp16.cpp)
+add_example_executable(example_gemm_bias_xdl_fp16 gemm_bias_xdl_fp16.cpp)
+add_example_executable(example_gemm_bias_broadcast_last_dim_xdl_fp16 gemm_bias_broadcast_last_dim_xdl_fp16.cpp)
