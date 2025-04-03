@@ -280,15 +280,15 @@ struct FillMonotonicSeq
     template <typename ForwardIter>
     void operator()(ForwardIter first, ForwardIter last) const
     {
-        std::generate(first, last, [=, n = init_value_]() mutable {
+        std::generate(first, last, [step = step_, n = init_value_]() mutable {
             auto tmp = n;
             if constexpr(std::is_same_v<decltype(tmp), pk_int4_t>)
             {
-                n.data += step_.data;
+                n.data += step.data;
             }
             else
             {
-                n += step_;
+                n += step;
             }
             return tmp;
         });
@@ -315,18 +315,18 @@ struct FillStepRange
     template <typename ForwardIter>
     void operator()(ForwardIter first, ForwardIter last) const
     {
-        std::generate(first, last, [=, n = start_value_]() mutable {
+        std::generate(first, last, [step = step_, start_value = start_value_, end_value = end_value_, n = start_value_]() mutable {
             auto tmp = n;
-            n += step_;
+            n += step;
             if constexpr(IsAscending)
             {
-                if(n > end_value_)
-                    n = start_value_;
+                if(n > end_value)
+                    n = start_value;
             }
             else
             {
-                if(n < end_value_)
-                    n = start_value_;
+                if(n < end_value)
+                    n = start_value;
             }
 
             return type_convert<T>(tmp);

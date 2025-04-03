@@ -61,6 +61,7 @@ message("adding example ${EXAMPLE_FMHA_FWD}")
 add_executable(${EXAMPLE_FMHA_FWD} EXCLUDE_FROM_ALL fmha_fwd.cpp)
 target_include_directories(${EXAMPLE_FMHA_FWD} PRIVATE ${CMAKE_CURRENT_LIST_DIR})
 target_sources(${EXAMPLE_FMHA_FWD} PRIVATE ${FMHA_FWD_GEN_BLOBS})
+target_compile_features(${EXAMPLE_FMHA_FWD} PRIVATE cxx_std_20)
 
 set(EXAMPLE_FMHA_BWD "tile_example_fmha_bwd")
 # not using add_example_executable() to add this target, since we don't want this to have
